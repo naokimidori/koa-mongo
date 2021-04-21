@@ -1,13 +1,13 @@
-const koa = require('koa');
-const Router = require('koa-router');
+import Koa from 'koa';
+import Router from 'koa-router';
 
 // 实例化koa
-const app = new koa();
+const app = new Koa();
 const router = new Router();
 
 // 路由
 router.get('/', async ctx => {
-  ctx.body = { msg: "hello koa interface"}
+  ctx.body = `<h1>Hello World~</h1>`
 })
 
 // 配置路由

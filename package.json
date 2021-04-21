@@ -4,10 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "dev": "yarn run nodemon --exec babel-node index.js",
+    "build": "yarn run babel . -d build --ignore node_modules,build --minified",
+    "start": "node build"
   },
   "keywords": [],
-  "author": "",
+  "author": "vinoz <naokimidori@163.com>",
   "license": "ISC",
   "dependencies": {
     "koa": "^2.13.1",
