@@ -12,7 +12,9 @@
   "author": "vinoz <naokimidori@163.com>",
   "license": "ISC",
   "dependencies": {
+    "graphql": "^15.5.0",
     "koa": "^2.13.1",
+    "koa-graphql": "^0.8.0",
     "koa-router": "^10.0.0"
   },
   "devDependencies": {

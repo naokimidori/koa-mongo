@@ -1,16 +1,31 @@
 import Koa from 'koa';
 import Router from 'koa-router';
+import graphqlHTTP from "koa-graphql";
+import { buildSchema } from "graphql";
 
-// 实例化koa
 const app = new Koa();
 const router = new Router();
 
-// 路由
+const schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
+
+const rootValue = {
+  hello: () => `Hello World~`
+}
+
+router.all('/_graphql_', graphqlHTTP({
+  schema,
+  rootValue,
+  graphiql: true,
+}));
+
 router.get('/', async ctx => {
-  ctx.body = `<h1>Hello World~</h1>`
+  ctx.body = `<h1>Hello World!</h1>`
 })
 
-// 配置路由
 app.use(router.routes()).use(router.allowedMethods());
 
 const port = process.env.PORT || 5000;
