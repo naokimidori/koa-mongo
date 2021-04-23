@@ -2,18 +2,28 @@ import Koa from 'koa';
 import Router from 'koa-router';
 import graphqlHTTP from "koa-graphql";
 import { buildSchema } from "graphql";
+import { nanoid } from 'nanoid';
 
 const app = new Koa();
 const router = new Router();
 
 const schema = buildSchema(`
+  type User {
+    id: ID!
+    name: String
+    age: Int
+  }
   type Query {
-    hello: String
+    user: User
   }
 `);
 
 const rootValue = {
-  hello: () => `Hello World~`
+  user: () => ({
+    id: nanoid(),
+    name: '张三',
+    age: 19 
+  })
 }
 
 router.all('/_graphql_', graphqlHTTP({
